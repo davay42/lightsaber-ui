@@ -10,6 +10,8 @@ import ControlState from "./ControlState.vue";
 import ControlConfig from "./ControlConfig.vue";
 import { useConfig } from "../composables/useConfig.js";
 
+import { version } from '../package.json'
+
 const { config } = useConfig()
 
 const { color, hsl } = useColor()
@@ -39,7 +41,8 @@ const { state, toggleLightState } = useState()
 main#app.text-light-300.bg-dark-900.min-h-100svh.flex.flex-col.gap-6
   header.text-2xl.sm-text-3xl.p-8.bg-dark-400.text-white.flex.items-center.gap-4 
     .i-fa6-solid-jedi.text-4xl.text-orange-500
-    .p-0.ml-4 Light Saber Lab
+    .p-0.ml-4 Light Saber Lab 
+      .text-xs.opacity-70 v.{{ version }}
     .flex-auto
     button.opacity-50.hover-opacity-100(@click="connect()" :class="{'opacity-80':available}" :title="device?.name")
       .i-ph-bluetooth(v-if="available")
