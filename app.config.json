@@ -1,0 +1,19 @@
+{
+	"device": {
+		"namePrefix": "PBSaber"
+	},
+	"services": {
+		"state": {
+			"service": "73621000-1fb5-459e-8fcc-c5c9c331914b",
+			"characteristic": "73621100-1fb5-459e-8fcc-c5c9c331914b"
+		},
+		"midi": {
+			"service": "03b80e5a-ede8-4b33-a751-6ce34ec4c700",
+			"characteristic": "7772e5db-3868-4112-a1a9-f2669d106bf3"
+		},
+		"config": {
+			"service": "73620000-1fb5-459e-8fcc-c5c9c331914b",
+			"characteristic": "73620100-1fb5-459e-8fcc-c5c9c331914b"
+		}
+	}
+}
