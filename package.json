@@ -1,6 +1,6 @@
 {
 	"name": "light-saber-ui",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"description": "Single file build to be hosted from the saber itself",
 	"main": "index.js",
 	"type": "module",
