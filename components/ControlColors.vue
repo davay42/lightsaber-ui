@@ -4,6 +4,8 @@ import { useGesture } from '@vueuse/gesture'
 
 import { useColor } from "../composables/useColor.js";
 import { useConfig } from "../composables/useConfig.js";
+import ControlSlider from './ControlSlider.vue'
+
 const { color, hsl, bytes } = useColor()
 
 const { config } = useConfig()
@@ -35,7 +37,7 @@ useGesture({
 
 <template lang='pug'>
 section.flex.flex-col.gap-4.items-center.select-none
-  .grid.grid-cols-2.gap-4.w-full.h-30
+  .grid.grid-cols-2.gap-4.w-full
     .control.col-span-2(ref="controlH", :style="{background:hsl }")
       .param HUE
       .line(:style="{left:`${color.h/3.6}%`}")
@@ -55,7 +57,7 @@ section.flex.flex-col.gap-4.items-center.select-none
         .px-2(:style="{marginLeft:`${color.v>60 ? -50 : 0}px`}").
 
           {{color.v.toFixed(0)}}%
-    
+    ControlSlider.h-8.col-span-2(v-model="config.leds.brightness_max") Max Brightness
 </template>
 
 <style lang="postcss" scoped>

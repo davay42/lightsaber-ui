@@ -29,25 +29,16 @@ const orientation = computed(() => {
   }
 })
 
-
 </script>
 
 <template lang="pug">
-section.flex.flex-col.gap-2.w-full
-  .text-lg State
-  //- .flex.flex-wrap.gap-0.text-xs
-  //-   .flex.items-center.text-center.gap-2(
-  //-     style="flex: 1 1 50px"
-  //-     v-for="(value,param) in state" :key="param")
-  //-     .p-0 {{ param }}  
-  //-     .p-0 {{ value }}
-  .flex.flex-wrap.relative
-    .p-2 {{ state?.lightState }}
+section.flex.flex-col.gap-2.items-center.w-full
+  .flex.flex-wrap.relative.font-mono.text-xs
     .p-1.text-center.w-20(
       style="flex:0 1 80px"
       v-for="(angle,axis) in orientation") {{ axis }} 
-      .p-0 {{ angle }}°
-    .p-8.absolute.right-20.-top-20(
+      .p-0 {{ angle.toFixed() }}°
+    .p-8.absolute.right-20.-top-50.pointer-events-none(
       :style="{transform:`rotateX(${orientation.roll}deg) rotateY(${orientation.pitch}deg) rotateZ(${orientation.yaw}deg)`}"
       )
       SabreBlade

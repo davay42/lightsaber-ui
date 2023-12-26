@@ -1,7 +1,6 @@
 import { reactive, ref, watch } from 'vue'
-import { checkData, getTimestampHigh, getTimestampLow } from './utils.js'
+import { checkData, bytesToBit, bytesToInt16, sendMessage } from './utils.js'
 import { lightState_en, msgid_t } from './enums.js'
-import { bytesToBit, bytesToInt16, sendMessage } from './utils.js'
 
 const state = reactive({
   lightState: 0,
@@ -11,6 +10,7 @@ const state = reactive({
   sdCard: 0,
   imu: 0,
   reserved: 0,
+  incalibration: 0,
   batteryVoltage: 0,
   rollCentiDeg: 0,
   pitchCentiDeg: 0,
@@ -28,7 +28,7 @@ watch(inState, loadState)
 
 export function useState() {
   return {
-    state, inState, outState, timestamp, loadState, toggleLightState
+    state, inState, outState, timestamp, loadState, toggleLightState, calibrateIMU
   }
 }
 
@@ -36,6 +36,13 @@ function toggleLightState() {
   const data = new Uint8Array(2);
   data[0] = msgid_t.MSG_LIGHTSABER_STATE;
   data[1] = state.lightState == lightState_en.LIGHT_ON ? 0 : 1;
+  outState.value = sendMessage(data, 2);
+}
+
+function calibrateIMU() {
+  const data = new Uint8Array(2);
+  data[0] = msgid_t.MSG_LIGHTSABER_STATE_CALIBIMU;
+  data[1] = 1;
   outState.value = sendMessage(data, 2);
 }
 

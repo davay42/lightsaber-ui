@@ -7,6 +7,7 @@ const msgid_t = {
   //State messages
   MSG_LIGHTSABER_STATE: 0x01,          // Turn on/off the lightsaber
   MSG_LIGHTSABER_STATE_ALL: 0x02,      // For return of all states
+  MSG_LIGHTSABER_STATE_CALIBIMU: 0x03, // Recalibrate IMU
 
   //Config messages
   MSG_LIGHTSABER_CONFIG: 0xA0,         // Whole struct of config

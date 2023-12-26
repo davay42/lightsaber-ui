@@ -9,3 +9,7 @@
 <https://www.esp32.com/viewtopic.php?t=26769>
 <https://tigoe.github.io/SoundExamples/midi-ble.html>
 <https://github.com/nkolban/esp32-snippets/issues/510>
+
+## Hardware part
+
+<https://github.com/fxprime/lightsaber_piratebay>
