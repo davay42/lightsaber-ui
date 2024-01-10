@@ -1,9 +1,9 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useGesture } from '@vueuse/gesture'
 
-import { useColor } from "../composables/useColor.js";
-import { useConfig } from "../composables/useConfig.js";
+import { useColor } from "../../composables/useColor.js";
+import { useConfig } from "../../composables/useConfig.js";
 import ControlSlider from './ControlSlider.vue'
 
 const { color, hsl, bytes } = useColor()
@@ -19,7 +19,7 @@ const controlS = ref()
 const controlV = ref()
 
 useGesture({
-  onDrag(ev) { ev.event.preventDefault(); color.h += ev.delta[0] / 10 },
+  onDrag(ev) { ev.event.preventDefault(); color.h += ev.delta[0] / 2 },
   onWheel(ev) { ev.event.preventDefault(); color.h -= ev.velocities[0] },
 }, { domTarget: controlH, eventOptions: { passive: false } })
 
@@ -33,12 +33,25 @@ useGesture({
   onWheel(ev) { ev.event.preventDefault(); color.v -= ev.velocities[0] },
 }, { domTarget: controlV, eventOptions: { passive: false } })
 
+
+const generatedHueGradient = computed(() => {
+  let hueGradient = 'linear-gradient(to right';
+
+  // Generate color stops for each hue value from 0 to 360
+  for (let i = 0; i <= 360; i += 1) {
+    hueGradient += `, hsl(${i}, ${color.s}%, ${color.v}%)`;
+  }
+
+  hueGradient += ')';
+  return hueGradient;
+})
+
 </script>
 
 <template lang='pug'>
-section.flex.flex-col.gap-4.items-center.select-none
-  .grid.grid-cols-2.gap-4.w-full
-    .control.col-span-2(ref="controlH", :style="{background:hsl }")
+section.h-full.select-none
+  .grid.grid-cols-2.gap-4.w-full.h-full
+    .control.col-span-2(ref="controlH", :style="{background:generatedHueGradient }")
       .param HUE
       .line(:style="{left:`${color.h/3.6}%`}")
         .px-2(:style="{marginLeft:`${color.h>310 ? -50 : 0}px`}").
@@ -57,7 +70,7 @@ section.flex.flex-col.gap-4.items-center.select-none
         .px-2(:style="{marginLeft:`${color.v>60 ? -50 : 0}px`}").
 
           {{color.v.toFixed(0)}}%
-    ControlSlider.h-8.col-span-2(v-model="config.leds.brightness_max") Max Brightness
+    ControlSlider.col-span-2(v-model="config.leds.brightness_max") Max Brightness
 </template>
 
 <style lang="postcss" scoped>

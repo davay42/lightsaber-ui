@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useGesture } from '@vueuse/gesture'
-import { freqColor } from "../composables/useColor.js";
+import { freqColor } from "../../composables/useColor.js";
 
 const modelX = defineModel('x', { local: true, default: 0 })
 const modelY = defineModel('y', { local: true, default: 0 })

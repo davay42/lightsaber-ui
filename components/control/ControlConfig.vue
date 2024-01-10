@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
-import { useBLE } from '../composables/useBLE.js';
-import { useConfig } from '../composables/useConfig.js';
+import { useBLE } from '../../composables/useBLE.js';
+import { useConfig } from '../../composables/useConfig.js';
 import { watchThrottled } from '@vueuse/core';
 
 const { config, inConfig, outConfig, readConfig, configReady } = useConfig()
@@ -41,15 +41,12 @@ watchThrottled(outConfig, async c => {
 </script>
 
 <template lang="pug">
-section.flex.flex-col.gap-4
-  details
-    summary.text-lg.p-4.bg-dark-100.rounded Config console
-    .flex.flex-col.p-4.text-xs.bg-dark-100.overflow-x-scroll.opacity-60
-      .flex.flex-col.bg-dark-700.font-mono.text-xs.gap-2.p-4
-        button.flex-1(@click="requestConfig()") Receive Config
-        p IN {{ inConfig?.join(" ") }}
-        p OUT {{ outConfig?.join(' ') }}
-      pre.max-w-80 {{ config }} 
+section.flex.flex-col.p-0.text-xs.bg-dark-100.overflow-scroll.opacity-60.max-h-120
+  .flex.flex-col.bg-dark-700.font-mono.text-xs.gap-2.p-4.sticky.top-0
+    button.flex-1(@click="requestConfig()") Receive Config
+    p IN {{ inConfig?.join(" ") }}
+    p OUT {{ outConfig?.join(' ') }}
+  pre.bg-dark-900.p-2 {{ config }} 
 </template>
 
 

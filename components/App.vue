@@ -3,11 +3,12 @@ import { useGesture } from "@vueuse/gesture";
 import { computed, ref } from "vue";
 import { useColor } from "../composables/useColor.js";
 import appConfig from '../app.config.json'
-import ControlColors from './ControlColors.vue'
-import ControlSound from './ControlSound.vue'
+import ControlColors from './control/ControlColors.vue'
+import ControlSound from './control/ControlSound.vue'
 
-import ControlState from "./ControlState.vue";
-import ControlConfig from "./ControlConfig.vue";
+import ControlState from "./control/ControlState.vue";
+import ControlConfig from "./control/ControlConfig.vue";
+import ControlHum from "./control/ControlHum.vue";
 import { useConfig } from "../composables/useConfig.js";
 
 import { useBLE } from "../composables/useBLE.js";
@@ -44,52 +45,55 @@ function setMode() {
   }
 }
 
+const editGraph = ref(false)
+
 </script>
 
 <template lang="pug">
-main#app.text-light-300.bg-dark-900.min-h-100svh.flex.flex-col.gap-6
+main#app.text-light-300.bg-dark-900.min-h-100svh.flex.flex-col.gap-0
   header.text-2xl.sm-text-3xl.p-8.bg-dark-400.text-white.flex.items-center.gap-4 
     .i-fa6-solid-jedi.text-4xl.text-orange-500
     .p-0.ml-4 Light Saber Lab 
-      .text-xs.opacity-70 v.{{ version }}
+      .text-xs.opacity-70 v.{{ version }} 
     .flex-auto
+    button.opacity-50.hover-opacity-100(
+      @click="calibrateIMU()"
+      title="Calibrate IMU"
+      )
+      .i-carbon-calibrate
+    button.opacity-50.hover-opacity-100(@click="editGraph=!editGraph" :class="{'animate-pulse scale-150':editGraph}" :title="device?.name")
+      .i-ph-graph
     button.opacity-50.hover-opacity-100(@click="connect()" :class="{'opacity-80':available}" :title="device?.name")
       .i-ph-bluetooth(v-if="available")
       .i-ph-bluetooth-slash(v-else)
 
-  article.flex.flex-auto()
-    button.cursor-pointer.transition.absolute.left-6.text-2xl.p-2.z-100(
-      :style="{backgroundColor:state.lightState ? hsl: 'hsl(0deg,0%,30%)',opacity: state.lightState ? 1: 0.7}"
-      @dblclick.prevent
-      @click.prevent="toggleLightState()"
-      )
-      .i-la-power-off
-    aside.flex-0.w-4.mx-10.transition-transform.duration-700.origin-center-bottom.rounded-lg.m-4.border-5(:style="{transform: `scaleY(${state.lightState ? 1:0})`,background:`hsla(0deg,0%,100%,${color.v/50})`,borderColor:hsl, boxShadow:`0px 0px 40px 10px ${hsl}` }")
 
-    .flex.flex-col.gap-2.pr-2
-      .flex.flex-wrap.flex-1.gap-6.p-4.bg-dark-200.rounded-lg(ref="demo")
+  transition(name="fade" mode="out-in")
+    NodeEditor(v-if="editGraph")
+
+    article.flex.flex-auto.pt-8(v-else)
+      button.cursor-pointer.absolute.left-6.text-2xl.p-2.z-100(
+        :style="{backgroundColor:state.lightState ? hsl: 'hsl(0deg,0%,30%)',opacity: state.lightState ? 1: 0.7}"
+        @dblclick.prevent
+        @click.prevent="toggleLightState()"
+        )
+        .i-la-power-off
+      aside.flex-0.w-4.mx-10.transition-transform.duration-700.origin-center-bottom.rounded-lg.m-4.border-5(:style="{transform: `scaleY(${state.lightState ? 1:0})`,background:`hsla(0deg,0%,100%,${color.v/50})`,borderColor:hsl, boxShadow:`0px 0px 40px 10px ${hsl}` }")
+
+      .grid.sm-grid-cols-2.xl-grid-cols-3.2xl-grid-cols-4.gap-8.mx-4.flex-1.p-4.bg-dark-200.rounded-lg(ref="demo")
+        ControlState.flex-0
         .flex.flex-wrap.gap-2.w-full
           button.p-2.flex-1.w-full(
             v-for="(_,mode) in 4" :key="mode"
             @pointerdown="config.sabreMode.mode = mode"
             :class="{active: mode == config.sabreMode.mode}"
             ) {{ getEnum(sabreModeConfig_en,mode).slice(5) }}
-        ControlState.flex-0
+
         ControlColors.flex-1.min-w-70
         ControlSound
+        ControlHum 
         ControlConfig
 
-
-  footer.bg-dark-500.p-6.text-light-800.flex.items-center.gap-2
-    .i-la-copyright 
-    .p-0  2023 Pirate Bay, Phuket
-    .flex-1 
-    button.p-2.text-2xl.opacity-50.hover-opacity-100.transition(
-      @click="calibrateIMU()"
-      title="Calibrate IMU"
-      )
-      .i-carbon-calibrate
-  NodeEditor
 </template>
 
 <style lang="postcss">

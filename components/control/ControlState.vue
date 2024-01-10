@@ -1,9 +1,9 @@
 <script setup>
-import { useState } from '../composables/useState.js';
-import { useBLE } from '../composables/useBLE.js'
+import { useState } from '../../composables/useState.js';
+import { useBLE } from '../../composables/useBLE.js'
 import { watchOnce } from '@vueuse/core';
 import { watch, computed } from 'vue';
-import SabreBlade from './SabreBlade.vue';
+import SabreBlade from '../SabreBlade.vue';
 
 const { state, inState, outState, timestamp } = useState()
 
