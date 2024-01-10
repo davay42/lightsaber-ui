@@ -46,10 +46,21 @@ const generatedHueGradient = computed(() => {
   return hueGradient;
 })
 
+const demo = ref()
+
+useGesture({
+  onDrag(e) {
+    e.event.preventDefault();
+  }
+}, {
+  domTarget: demo,
+  eventOptions: { passive: false }
+})
+
 </script>
 
 <template lang='pug'>
-section.h-full.select-none
+section.h-full.select-none(ref="demo")
   .grid.grid-cols-2.gap-4.w-full.h-full
     .control.col-span-2(ref="controlH", :style="{background:generatedHueGradient }")
       .param HUE

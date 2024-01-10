@@ -38,7 +38,7 @@ section.flex.flex-col.gap-2.items-center.w-full
       style="flex:0 1 80px"
       v-for="(angle,axis) in orientation") {{ axis }} 
       .p-0 {{ angle.toFixed() }}°
-    .p-8.absolute.right-20.-top-50.pointer-events-none(
+    .p-8.absolute.right-20.-top-30.pointer-events-none(
       :style="{transform:`rotateX(${orientation.roll}deg) rotateY(${orientation.pitch}deg) rotateZ(${orientation.yaw}deg)`}"
       )
       SabreBlade
