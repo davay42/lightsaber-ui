@@ -14,10 +14,12 @@
 	"author": "davay42",
 	"license": "MIT",
 	"dependencies": {
+		"@baklavajs/themes": "^2.3.0",
 		"@unocss/reset": "^0.58.0",
 		"@vueuse/core": "^10.7.0",
 		"@vueuse/gesture": "^2.0.0-beta.1",
 		"@vueuse/math": "^10.7.0",
+		"baklavajs": "^2.3.0",
 		"vue": "^3.3.13",
 		"webmidi": "3.1.8"
 	},

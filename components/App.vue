@@ -15,6 +15,7 @@ import { useState } from "../composables/useState.js";
 import { getEnum, sabreModeConfig_en } from "../composables/enums.js";
 
 import { version } from '../package.json'
+import NodeEditor from "./NodeEditor.vue";
 getEnum
 const { config, inConfig, outConfig } = useConfig()
 
@@ -78,6 +79,7 @@ main#app.text-light-300.bg-dark-900.min-h-100svh.flex.flex-col.gap-6
         ControlSound
         ControlConfig
 
+
   footer.bg-dark-500.p-6.text-light-800.flex.items-center.gap-2
     .i-la-copyright 
     .p-0  2023 Pirate Bay, Phuket
@@ -87,6 +89,7 @@ main#app.text-light-300.bg-dark-900.min-h-100svh.flex.flex-col.gap-6
       title="Calibrate IMU"
       )
       .i-carbon-calibrate
+  NodeEditor
 </template>
 
 <style lang="postcss">
