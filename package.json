@@ -15,21 +15,22 @@
 	"license": "MIT",
 	"dependencies": {
 		"@baklavajs/themes": "^2.3.0",
-		"@unocss/reset": "^0.58.0",
-		"@vueuse/core": "^10.7.0",
+		"@unocss/reset": "^0.58.3",
+		"@vueuse/core": "^10.7.1",
 		"@vueuse/gesture": "^2.0.0-beta.1",
-		"@vueuse/math": "^10.7.0",
+		"@vueuse/math": "^10.7.1",
 		"baklavajs": "^2.3.0",
-		"vue": "^3.3.13",
-		"webmidi": "3.1.8"
+		"vue": "^3.4.11",
+		"vue-router": "^4.2.5",
+		"webmidi": "^3.1.8"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "^0.58.0",
-		"@vitejs/plugin-vue": "^4.6.0",
-		"@vue/language-plugin-pug": "^1.8.26",
+		"@unocss/extractor-pug": "^0.58.3",
+		"@vitejs/plugin-vue": "^5.0.3",
+		"@vue/language-plugin-pug": "^1.8.27",
 		"pug": "^3.0.2",
-		"unocss": "^0.58.0",
-		"vite": "^5.0.10",
+		"unocss": "^0.58.3",
+		"vite": "^5.0.11",
 		"vite-plugin-singlefile": "^0.13.5"
 	}
 }
