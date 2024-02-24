@@ -14,23 +14,23 @@
 	"author": "davay42",
 	"license": "MIT",
 	"dependencies": {
-		"@baklavajs/themes": "^2.3.0",
-		"@unocss/reset": "^0.58.3",
-		"@vueuse/core": "^10.7.1",
-		"@vueuse/gesture": "^2.0.0-beta.1",
-		"@vueuse/math": "^10.7.1",
-		"baklavajs": "^2.3.0",
-		"vue": "^3.4.11",
-		"vue-router": "^4.2.5",
+		"@baklavajs/themes": "^2.4.1",
+		"@unocss/reset": "^0.58.5",
+		"@vueuse/core": "^10.8.0",
+		"@vueuse/gesture": "^2.0.0",
+		"@vueuse/math": "^10.8.0",
+		"baklavajs": "^2.4.1",
+		"vue": "^3.4.19",
+		"vue-router": "^4.3.0",
 		"webmidi": "^3.1.8"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "^0.58.3",
-		"@vitejs/plugin-vue": "^5.0.3",
+		"@unocss/extractor-pug": "^0.58.5",
+		"@vitejs/plugin-vue": "^5.0.4",
 		"@vue/language-plugin-pug": "^1.8.27",
 		"pug": "^3.0.2",
-		"unocss": "^0.58.3",
-		"vite": "^5.0.11",
-		"vite-plugin-singlefile": "^0.13.5"
+		"unocss": "^0.58.5",
+		"vite": "^5.1.4",
+		"vite-plugin-singlefile": "^2.0.0"
 	}
 }
