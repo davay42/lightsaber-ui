@@ -26,6 +26,8 @@ const presets = useStorage('baklava-presets', {})
 
 const presetName = ref()
 
+const json = ref()
+
 
 function save(preset) {
   if (!preset) return
@@ -35,6 +37,8 @@ function save(preset) {
 function load(preset) {
   baklava.editor.load(presets.value[preset])
 }
+
+
 
 </script>
 
@@ -48,6 +52,11 @@ function load(preset) {
       v-for="(preset,p) in presets" :key="preset") {{ p }}
       .i-la-times(@click.prevent.stop="delete presets[p]")
   EditorComponent(:view-model="baklava")
+  .flex.flex-col.gap-4
+    .flex.gap-4
+      button.p-4(@click="json = baklava.editor.save()") TO JSON
+      button.p-4(@click="json = ''") CLEAR
+    pre.p-4.text-xs {{ json }}
 </template>
 
 
