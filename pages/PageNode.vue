@@ -52,11 +52,13 @@ function load(preset) {
       v-for="(preset,p) in presets" :key="preset") {{ p }}
       .i-la-times(@click.prevent.stop="delete presets[p]")
   EditorComponent(:view-model="baklava")
-  .flex.flex-col.gap-4
+  .flex.flex-col.gap-4.mt-8.mx-4.mb-8
     .flex.gap-4
-      button.p-4(@click="json = baklava.editor.save()") TO JSON
+      button.p-4(@click="json = baklava.editor.save()") EXPORT JSON
+      button.p-4(@click="baklava.editor.load(json)") IMPORT JSON
+
       button.p-4(@click="json = ''") CLEAR
-    pre.p-4.text-xs {{ json }}
+    textarea.rounded.font-mono.bg-dark-300.p-4.text-xs.h-80 {{ json }}
 </template>
 
 
