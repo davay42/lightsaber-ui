@@ -13,6 +13,6 @@
     "target": "esnext",
     "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
-    "module": "ESNext"
+    "module": "NodeNext"
   }
 }
